@@ -18,13 +18,12 @@ function getData() {
     fetch(scriptAPI + '?nameofdata=items', requestOptions)
         .then(response => response.json())
         .then(items => {
-            console.log(typeof items);
             dataBtnElm.style.display = 'none';
             const results = Object.values(items).map(item => {
                 const data = Object.values(item).map(value => `<li>${value}</li>`)
-                return `<ul>${[...data]}</ul>`;
+                return `<ul>${data.join('')}</ul>`;
             });
-            containerElm.innerHTML = `<ul>${[...results]}</ul>`;
+            containerElm.innerHTML = `<ul>${results.join('')}</ul>`;
         })
         .catch(err => {
             console.log(err);
